@@ -1,5 +1,2 @@
-words_test_ruby
-===============
-
-Coding Challenge
-
+This is not the readme you are looking for.
+=====================
