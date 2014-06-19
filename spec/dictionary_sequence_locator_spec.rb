@@ -11,8 +11,8 @@ describe DictionarySequenceLocator do
 
     it 'creates two output files' do
       DictionarySequenceLocator.process_file(test_file)
-      File.file?('sequences.txt').should be true
-      File.file?('words.txt').should be true
+      expect(File.exists?('sequences.txt')).to be_true
+      expect(File.exists?('words.txt')).to be_true
     end
   end
 end
