@@ -20,11 +20,4 @@ describe SequenceLocator do
     subject.sequences_and_words.should eq sequences_and_words
   end
 
-  it 'finds the substrings in each word' do
-    subject.get_substrings(dictionary.first).should eq substrings
-  end
-
-  it 'returns all possible substrings from the dictionary' do
-    subject.search_for_substrings(dictionary).should eq all_substrings
-  end
 end
