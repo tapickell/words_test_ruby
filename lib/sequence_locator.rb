@@ -21,6 +21,11 @@ class SequenceLocator
 
   def search_for_substrings
     @dictionary.each { |word| get_substring_from(word) }
+    sort_sequences_and_words
+  end
+
+  def sort_sequences_and_words
+    @sequences_and_words = @sequences_and_words.sort.to_h
   end
 
   def get_substring_from(word)
