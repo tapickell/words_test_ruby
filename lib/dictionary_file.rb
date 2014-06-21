@@ -21,7 +21,7 @@ class DictionaryFile
 
   def load_from_file(file_name)
     File.open(file_name, "r").each do |line|
-      @dictionary << line
+      @dictionary << line.chomp
     end
   end
 

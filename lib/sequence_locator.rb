@@ -4,7 +4,7 @@ class SequenceLocator
   def initialize(dictionary)
     @dictionary = dictionary
     @sequences_and_words = {}
-    process_dictionary
+    search_for_substrings
   end
 
   def sequences_and_words(&block)
@@ -19,14 +19,8 @@ class SequenceLocator
 
   private
 
-  def process_dictionary
-    search_for_substrings(@dictionary)
-  end
-
-  def search_for_substrings(dictionary)
-    dictionary.each do |word|
-      get_substring_from(word)
-    end
+  def search_for_substrings
+    @dictionary.each { |word| get_substring_from(word) }
   end
 
   def get_substring_from(word)
