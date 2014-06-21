@@ -1,20 +1,11 @@
 class SequenceLocator
   SEQUENCE_LENGTH = 4
+  attr_reader :sequences_and_words
 
   def initialize(dictionary)
     @dictionary = dictionary
     @sequences_and_words = {}
     process_dictionary
-  end
-
-  def sequences_and_words(&block)
-    if block_given?
-      @sequences_and_words.each do |sequence, word|
-        block.call(sequence, word)
-      end
-    else
-      @sequences_and_words
-    end
   end
 
   private

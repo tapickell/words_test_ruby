@@ -9,13 +9,9 @@ class DictionaryFile
     load_dictionary file_name
   end
 
-  def each(&block)
+  def each
     @dictionary.each do |word|
-      if block_given?
-        block.call word
-      else
-        word
-      end
+      yield word
     end
   end
 
