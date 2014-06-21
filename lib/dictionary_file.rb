@@ -1,10 +1,12 @@
+require 'open-uri'
+
 class DictionaryFile
   include Enumerable
   attr_reader :dictionary
 
   def initialize(file_name)
     @dictionary = []
-    load_from_file file_name
+    load_dictionary file_name
   end
 
   def each(&block)
@@ -19,9 +21,11 @@ class DictionaryFile
 
   private
 
-  def load_from_file(file_name)
-    File.open(file_name, "r").each do |line|
-      @dictionary << line.chomp
+  def load_dictionary(file_name)
+    open(file_name) do |file|
+      file.each_line do |line|
+        @dictionary << line.chomp
+      end
     end
   end
 

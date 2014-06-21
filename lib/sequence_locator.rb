@@ -4,7 +4,7 @@ class SequenceLocator
   def initialize(dictionary)
     @dictionary = dictionary
     @sequences_and_words = {}
-    search_for_substrings
+    process_dictionary
   end
 
   def sequences_and_words(&block)
@@ -19,9 +19,13 @@ class SequenceLocator
 
   private
 
+  def process_dictionary
+    search_for_substrings
+    sort_sequences_and_words
+  end
+
   def search_for_substrings
     @dictionary.each { |word| get_substring_from(word) }
-    sort_sequences_and_words
   end
 
   def sort_sequences_and_words
@@ -31,13 +35,16 @@ class SequenceLocator
   def get_substring_from(word)
     index = word.length - SEQUENCE_LENGTH
     while index > -1 do
-      substring = word[index, SEQUENCE_LENGTH]
-      if @sequences_and_words[substring]
-        @sequences_and_words.delete(substring)
-      else
-        @sequences_and_words[substring] = word
-      end
+      process_substring(word[index, SEQUENCE_LENGTH], word)
       index -= 1
+    end
+  end
+
+  def process_substring(substring, word)
+    if @sequences_and_words[substring]
+      @sequences_and_words.delete(substring)
+    else
+      @sequences_and_words[substring] = word
     end
   end
 end
