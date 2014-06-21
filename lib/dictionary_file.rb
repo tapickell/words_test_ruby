@@ -14,7 +14,7 @@ class DictionaryFile
       if block_given?
         block.call word
       else
-        yield word
+        word
       end
     end
   end
