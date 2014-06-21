@@ -8,20 +8,16 @@ class SequenceLocator
   end
 
   def sequences_and_words(&block)
-    if true
-      return @sequences_and_words
-    else
+    if block_given?
       @sequences_and_words.each do |sequence, word|
-        if block_given?
-          block.call(sequence, word)
-        else
-          yield(sequence, word)
-        end
+        block.call(sequence, word)
       end
+    else
+      @sequences_and_words
     end
   end
 
-  #private
+  private
 
   def process_dictionary
     search_for_substrings(@dictionary)
